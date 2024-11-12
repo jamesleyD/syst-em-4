@@ -1,0 +1,19 @@
+PARTIE 2:
+
+1.
+RX = PD0
+TX = PD1
+
+2.
+Les broches RX et TX sont reliées à l'ATmega16U2 qui est un microcontroleur qui sert de convertisseur USB-série.
+Ce composant est responsable de la communication entre l’ATmega328P et l’ordinateur via le port USB.
+Il permettra de convertire les signaux de l'interface UART (RX et TX) de l'ATmega328P en signaux USB.
+
+3.
+Pendant que la led est allumé le programme est bloqué donc la récéption et la transmission n'est plus possible
+
+Partie 3:
+
+1.
+Dans les 2 cas tails = head.
+

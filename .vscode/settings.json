@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "sleep.h": "c",
+    "wdt.h": "c",
+    "power.h": "c",
+    "setbaud.h": "c"
+  }
+}
