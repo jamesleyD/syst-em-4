@@ -5,14 +5,11 @@ void UART_init(uint32_t baud_rate);
 void UART_putc(uint8_t c);
 
 void UART_init(uint32_t baud_rate) {
-    // Calcul de la valeur UBRR pour le baud rate souhaité
     uint16_t ubrr = F_CPU / 16 / baud_rate - 1;
-    // Définir le baud rate
     UBRR0H = (uint8_t)(ubrr >> 8);
     UBRR0L = (uint8_t)ubrr;
-    // Activer l'émetteur (TX)
     UCSR0B = (1 << TXEN0);
-    // Configurer le format des données : 8 bits, 1 bit de stop, sans parité
+    // 8 bits, 1 bit de stop, sans parité
     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
 }
 
@@ -24,7 +21,6 @@ void UART_putc(uint8_t c) {
 }
 
 int main(void) {
-    // Initialiser l'UART avec un baud rate de 9600
     UART_init(9600);
 
     while (1) {
