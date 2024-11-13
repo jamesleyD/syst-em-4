@@ -8,7 +8,7 @@ int main(void) {
     PORTB = 0;
 
     // Initialise l'USART avec un baud rate de 9600
-    UART__init(9600);
+    UART__init(9600, 1);
 
     for (;;) {
         uint8_t data;

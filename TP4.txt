@@ -1,3 +1,33 @@
+PARTIE 1:
+1. Les données échangées sont :
+111
+0
+01000010
+10
+11110110
+10
+01110110
+10
+01010110
+10
+11110110
+10
+10101110
+10
+01001110
+1111
+
+Il s'agit d'octets (en orientation petit-boutiste) qui représentent les caractères ASCII suivants :
+
+01000010 = B
+01101111 = o
+01101110 = n
+01101010 = j
+01101111 = o
+01110101 = u
+01110010 = r
+
+
 PARTIE 2:
 
 1.
@@ -9,7 +39,7 @@ Les broches RX et TX sont reliées à l'ATmega16U2 qui est un microcontroleur qu
 Ce composant est responsable de la communication entre l’ATmega328P et l’ordinateur via le port USB.
 Il permettra de convertire les signaux de l'interface UART (RX et TX) de l'ATmega328P en signaux USB.
 
-3.
+7.
 Pendant que la led est allumé le programme est bloqué donc la récéption et la transmission n'est plus possible
 
 Partie 3:
