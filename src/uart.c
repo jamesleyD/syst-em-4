@@ -9,13 +9,12 @@
 volatile struct ring_buffer rb;
 volatile uint8_t rb_buffer[RING_BUFFER_SIZE];
 
-void UART__init(uint32_t baud_rate) {
+void UART__init(uint32_t baud_rate, short withInterrupt) {
     // Initialisation du buffer circulaire
     ring_buffer__init(
-        &rb,
-        rb_buffer,
-        RING_BUFFER_SIZE
-    );
+        (struct ring_buffer*) &rb,
+        (uint8_t *) rb_buffer,
+        RING_BUFFER_SIZE);
 
     // La valeur de UBRR est calculée en fonction de l'horloge (ici 16 mHZ) et du baud rate souhaité
     // Elle est définit par la formule suivante
@@ -35,8 +34,10 @@ void UART__init(uint32_t baud_rate) {
       // pas de bit de parité
       | (0<<UPM01) | (0<<UPM00);
 
-    // Activation des interruptions globales
-    sei();
+    // Activation des interruptions globales si besoin
+    if (withInterrupt){
+        sei();
+    }
 }
 
 uint8_t UART__getc(){
@@ -63,7 +64,7 @@ uint8_t UART__pop(uint8_t* data) {
     uint8_t result;
     // Désactiver les interruptions pour éviter les problèmes de concurrence
     cli();
-    result = ring_buffer__pop(&rb, data);
+    result = ring_buffer__pop((struct ring_buffer*) &rb, data);
     // Réactiver les interruptions
     sei();
     return result;
@@ -74,5 +75,5 @@ ISR(USART_RX_vect) {
     // Lire le caractère reçu
     uint8_t data = UDR0;
     // Le stocker dans le buffer circulaire
-    ring_buffer__push(&rb, data);
+    ring_buffer__push((struct ring_buffer*) &rb, data);
 }
